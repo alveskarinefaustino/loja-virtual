@@ -1,8 +1,10 @@
 #include <stdio.h>
+#include <string.h>
 
 int main() {
     int opcao;
     char nomeProduto[50] = "";
+    char busca[50];
     float preco = 0;
     int quantidade = 0;
     int produtoCadastrado = 0;
@@ -11,7 +13,8 @@ int main() {
         printf("\n=== LOJA VIRTUAL ===\n");
         printf("1 - Cadastrar produto\n");
         printf("2 - Listar produtos\n");
-        printf("3 - Sair\n");
+        printf("3 - Buscar produto\n");
+        printf("4 - Sair\n");
         printf("Escolha uma opcao: ");
         scanf("%d", &opcao);
 
@@ -43,13 +46,32 @@ int main() {
             }
 
         } else if (opcao == 3) {
+            printf("\n=== BUSCA DE PRODUTO ===\n");
+
+            if (produtoCadastrado == 0) {
+                printf("Nenhum produto cadastrado.\n");
+            } else {
+                printf("Digite o nome do produto: ");
+                scanf(" %[^\n]", busca);
+
+                if (strcmp(busca, nomeProduto) == 0) {
+                    printf("\nProduto encontrado!\n");
+                    printf("Nome: %s\n", nomeProduto);
+                    printf("Preco: R$ %.2f\n", preco);
+                    printf("Quantidade: %d\n", quantidade);
+                } else {
+                    printf("\nProduto nao encontrado.\n");
+                }
+            }
+
+        } else if (opcao == 4) {
             printf("\nEncerrando o sistema...\n");
 
         } else {
             printf("\nOpcao invalida.\n");
         }
 
-    } while (opcao != 3);
+    } while (opcao != 4);
 
     return 0;
 }
